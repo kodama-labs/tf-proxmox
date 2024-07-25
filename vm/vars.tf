@@ -41,3 +41,7 @@ variable "template_file_id" {
     type = string
     description = "file id for the resource template"
 }
+variable "pubkey" {
+  type = string
+  default = null
+}
