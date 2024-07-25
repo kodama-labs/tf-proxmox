@@ -46,7 +46,7 @@ variable "networking" {
 	type = list(object({
 		bridge = optional(string, "vmbr0")
 		vlan = optional(number, null)
-		ipv4 = optional(string, "auto")
+		ipv4 = optional(string, "dhcp")
 	}))
 	default = [{}]
 	description = "a list of all your networking devices. defaults to a single nic attached to vmbr0, no vlan, and with dhcp."
