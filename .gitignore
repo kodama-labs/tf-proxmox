@@ -1,0 +1,7 @@
+*.env
+.terraform
+.terraform.lock.hcl
+.vscode
+terraform.tfstate
+terraform.tfstate.backup
+provider-ssh/

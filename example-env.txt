@@ -1,0 +1,7 @@
+export PROXMOX_VE_ENDPOINT="https://your-endpoint:8006/"
+export PROXMOX_VE_INSECURE="true"
+export PROXMOX_VE_SSH_USERNAME="svc-account-username"
+# note the format here
+export PROXMOX_VE_API_TOKEN=svc-account-username@pve!provider=svc-account-api-token
+# use ssh-add <file> to connect
+export PROXMOX_VE_SSH_AGENT="true"
