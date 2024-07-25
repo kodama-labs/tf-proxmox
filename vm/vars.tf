@@ -2,6 +2,21 @@ variable "node_name" {
   type        = string
   description = "The name of the proxmox node to host this resource"
 }
+variable "cpu_cores" {
+	type = number
+	description = "number of CPU cores"
+	default = 1
+}
+variable "cpu_type" {
+	type = string
+	description = "CPU type (usually ok to leave as default)"
+  default = "x86-64-v2-AES"
+} 
+variable "memory_gb" {
+	type = number
+	description = "memory in GiB"
+	default = 1
+}
 variable disk_size {
     type = string
     description = "the size in gb of the disk for this resource"
@@ -27,6 +42,15 @@ variable "username" {
   type = string
   description = "username"
 }
+variable "networking" {
+	type = list(object({
+		bridge = optional(string, "vmbr0")
+		vlan = optional(number, null)
+		ipv4 = optional(string, "auto")
+	}))
+	default = [{}]
+	description = "a list of all your networking devices. defaults to a single nic attached to vmbr0, no vlan, and with dhcp."
+}
 variable "vlan_id" {
   type = number
   description = "VLAN tag that the resource network interface will use"
@@ -37,6 +61,7 @@ variable "bridge" {
   description = "network bridge to use for resource"
   default = "vmbr0"
 }
+
 variable "template_file_id" {
     type = string
     description = "file id for the resource template"

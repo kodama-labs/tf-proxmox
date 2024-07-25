@@ -15,7 +15,13 @@ resource "proxmox_virtual_environment_vm" "vm" {
     up_delay   = "60"
     down_delay = "60"
   }
-
+  cpu {
+		cores = var.cpu_cores
+		type = var.cpu_type
+	}
+  memory {
+		dedicated = var.memory_gb * 1024
+	}
   disk {
     datastore_id = var.datastore_id
     file_id      = var.template_file_id
@@ -27,10 +33,14 @@ resource "proxmox_virtual_environment_vm" "vm" {
   initialization {
     datastore_id = var.datastore_id
     interface = "ide0"
-    ip_config {
-      ipv4 {
-        address = "dhcp"
-      }
+
+    dynamic "ip_config" {
+			for_each = var.networking
+			content {
+					ipv4 {
+						address = ip_config.value["ipv4"]
+					}
+			}
     }
 
     user_account {
@@ -43,9 +53,12 @@ resource "proxmox_virtual_environment_vm" "vm" {
 
    }
 
-  network_device {
-    bridge = var.bridge
-    vlan_id = var.vlan_id
+  dynamic "network_device" {
+		for_each = var.networking
+		content {
+				bridge = network_device.value["bridge"]
+				vlan_id = network_device.value["vlan"]
+		}
   }
 
   operating_system {
