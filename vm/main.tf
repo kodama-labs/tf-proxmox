@@ -1,7 +1,7 @@
 resource "proxmox_virtual_environment_vm" "vm" {
   name        = var.hostname
   description = "Managed by Terraform"
-  tags        = var.tags
+  tags        = sort(var.tags)
 
   node_name = var.node_name
 
