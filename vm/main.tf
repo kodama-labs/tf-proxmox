@@ -1,13 +1,13 @@
 resource "proxmox_virtual_environment_vm" "vm" {
   name        = var.hostname
   description = "Managed by Terraform"
-  tags        = var.tags
+  tags        = sort(var.tags)
 
   node_name = var.node_name
 
   agent {
     # read 'Qemu guest agent' section, change to true only when ready
-    enabled = false
+    enabled = var.has_qemu_agent
   }
 
   startup {

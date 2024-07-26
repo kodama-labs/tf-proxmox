@@ -2,6 +2,11 @@ variable "node_name" {
   type        = string
   description = "The name of the proxmox node to host this resource"
 }
+variable "has_qemu_agent" {
+  type = bool
+  description = "tells proxmox that the qemu agent is installed and auto-runs for this vm"
+  default = false
+}
 variable "cpu_cores" {
 	type = number
 	description = "number of CPU cores"
