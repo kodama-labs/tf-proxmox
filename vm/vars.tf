@@ -3,7 +3,7 @@ variable "node_name" {
   description = "The name of the proxmox node to host this resource"
 }
 variable "has_qemu_agent" {
-  tupe = boolean
+  type = boolean
   description = "tells proxmox that the qemu agent is installed and auto-runs for this vm"
   default = false
 }
