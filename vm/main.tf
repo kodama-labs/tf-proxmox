@@ -48,9 +48,7 @@ resource "proxmox_virtual_environment_vm" "vm" {
       # will create this block once if user_data_file_id is null
       for_each = var.user_data_file_id != null ? [] : [""]
       content {
-        keys = [
-          var.pubkey != null ? trimspace(var.pubkey) : trimspace(tls_private_key.pki_pair.public_key_openssh)
-        ]
+        keys = var.pubkey != null? [var.pubkey] : null
         password = random_password.password_resource.result
         username = var.username
       }
@@ -92,11 +90,3 @@ output "password" {
   sensitive = true
 }
 
-output "private_key" {
-  value     = tls_private_key.pki_pair.private_key_pem
-  sensitive = true
-}
-
-output "public_key" {
-  value = tls_private_key.pki_pair.public_key_openssh
-}
