@@ -52,6 +52,9 @@ resource "proxmox_virtual_environment_vm" "vm" {
       username = var.username
     }
 
+    user_data_file_id = var.user_data_file_id
+    
+
    }
 
   dynamic "network_device" {
