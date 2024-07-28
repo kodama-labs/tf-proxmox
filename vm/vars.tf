@@ -52,6 +52,7 @@ variable "networking" {
 		bridge = optional(string, "vmbr0")
 		vlan = optional(number, null)
 		ipv4 = optional(string, "dhcp")
+    ipv4_gateway = optional(string, null)
 	}))
 	default = [{}]
 	description = "a list of all your networking devices. defaults to a single nic attached to vmbr0, no vlan, and with dhcp."
