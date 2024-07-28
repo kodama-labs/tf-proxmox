@@ -46,7 +46,7 @@ resource "proxmox_virtual_environment_vm" "vm" {
 
     dynamic user_account {
       # will create this block once if user_data_file_id is null
-      for_each = var.user_data_file_id != null ? [] : ['']
+      for_each = var.user_data_file_id != null ? [] : [""]
       content {
         keys = [
           var.pubkey != null ? trimspace(var.pubkey) : trimspace(tls_private_key.pki_pair.public_key_openssh)
