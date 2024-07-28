@@ -39,6 +39,7 @@ resource "proxmox_virtual_environment_vm" "vm" {
 			content {
 					ipv4 {
 						address = ip_config.value["ipv4"]
+            gateway = ip_config.value["ipv4_gateway"]
 					}
 			}
     }
