@@ -42,10 +42,12 @@ variable "on" {
 variable "hostname" {
   type = string
   description = "hostname of the resource"
+  default = null
 }
 variable "username" {
   type = string
   description = "username"
+  default = null
 }
 variable "networking" {
 	type = list(object({
