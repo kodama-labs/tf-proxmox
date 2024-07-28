@@ -42,10 +42,12 @@ variable "on" {
 variable "hostname" {
   type = string
   description = "hostname of the resource"
+  default = null
 }
 variable "username" {
   type = string
   description = "username"
+  default = null
 }
 variable "networking" {
 	type = list(object({
@@ -71,6 +73,11 @@ variable "bridge" {
 variable "template_file_id" {
     type = string
     description = "file id for the resource template"
+}
+variable "user_data_file_id" {
+  type = string
+  description = "file id for a user data file snippet"
+  default = null
 }
 variable "pubkey" {
   type = string
