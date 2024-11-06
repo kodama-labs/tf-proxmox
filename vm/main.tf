@@ -80,10 +80,6 @@ resource "random_password" "password_resource" {
   special          = true
 }
 
-resource "tls_private_key" "pki_pair" {
-  algorithm = "RSA"
-  rsa_bits  = 2048
-}
 
 output "password" {
   value     = random_password.password_resource.result
