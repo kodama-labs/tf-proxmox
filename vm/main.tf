@@ -9,7 +9,7 @@ resource "proxmox_virtual_environment_vm" "vm" {
     # read 'Qemu guest agent' section, change to true only when ready
     enabled = var.has_qemu_agent
   }
-
+  stop_on_destroy = !var.has_qemu_agent
   startup {
     order      = "3"
     up_delay   = "60"
