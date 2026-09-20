@@ -40,9 +40,14 @@ resource "proxmox_virtual_environment_container" "container" {
     type             = "ubuntu"
   }
 
-
-
-
+  # The disk's source and the initialization (cloud-init) block are only
+  # meaningful at create time. Ignore drift on them so a container is NOT
+  # replaced when its backing template changes, and so a container restored
+  # from a PBS backup isn't reverted by terraform. Provisioned once, then
+  # managed with ansible.
+  lifecycle {
+    ignore_changes = [disk, initialization]
+  }
 }
 
 resource "random_password" "password_resource" {

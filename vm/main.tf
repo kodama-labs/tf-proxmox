@@ -72,6 +72,15 @@ resource "proxmox_virtual_environment_vm" "vm" {
     type = "l26" # linux
   }
 
+  # The disk's source file_id and the initialization (cloud-init) block are only
+  # meaningful at create time. Ignore drift on them so a VM is NOT replaced when
+  # its backing image changes, and so a VM restored from a PBS backup isn't
+  # reverted by terraform. VMs here are provisioned once and then managed with
+  # ansible, so we don't want disk/cloud-init changes to force a rebuild.
+  lifecycle {
+    ignore_changes = [disk, initialization]
+  }
+
 }
 
 
