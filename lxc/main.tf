@@ -1,7 +1,8 @@
 resource "proxmox_virtual_environment_container" "container" {
   description = "Managed by Terraform"
-  
+
   node_name = var.node_name
+  vm_id     = var.vm_id
   tags = var.tags
   unprivileged = ! var.privileged
 

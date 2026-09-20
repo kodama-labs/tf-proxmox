@@ -2,6 +2,11 @@ variable "node_name" {
   type        = string
   description = "The name of the proxmox node to host this resource"
 }
+variable "vm_id" {
+  type        = number
+  description = "Explicit container ID (VMID) in Proxmox. Leave null to let Proxmox auto-assign the next free ID."
+  default     = null
+}
 variable disk_size {
     type = string
     description = "the size in gb of the disk for this resource"
