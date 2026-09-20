@@ -4,6 +4,7 @@ resource "proxmox_virtual_environment_vm" "vm" {
   tags        = sort(var.tags)
 
   node_name = var.node_name
+  vm_id     = var.vm_id
 
   agent {
     # read 'Qemu guest agent' section, change to true only when ready
